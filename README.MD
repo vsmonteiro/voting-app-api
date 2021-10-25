@@ -10,3 +10,4 @@ An application to vote on any project of your interest.
 - Prisma
 - Postgres
 - SendGrid (passwordless login)
+- JWT
