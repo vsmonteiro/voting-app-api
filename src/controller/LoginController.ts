@@ -15,10 +15,9 @@ class LoginController {
     const response = await loginService.authenticate(email, emailToken);
 
     if(response?.Error) {
-      res.json({
+     return res.status(401).json({
         message: response.Error
-      })
-      .sendStatus(401);
+      });
     }
 
     return res.json(response);
