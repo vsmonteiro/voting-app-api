@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import prisma from "../prisma";
 
 interface TokenPayload {
-  id: number;
+  tokenId: number;
   iat: number;
   exp: number;
 }
@@ -19,11 +19,11 @@ export default async function authMiddleware(req: Request, res: Response, next: 
 
   try {
     const data = jwt.verify(token, process.env.JWT_SECRET || "");
-    const { id } = data as TokenPayload;
+    const { tokenId } = data as TokenPayload;
 
     const fetchedToken = await prisma.token.findUnique({
       where: {
-        id: id
+        id: tokenId
       },
       include: {
         user: true
@@ -34,7 +34,7 @@ export default async function authMiddleware(req: Request, res: Response, next: 
       return res.sendStatus(401);
     }
 
-    req.userId = id;
+    req.userId = tokenId;
     return next();
   }
   catch(error) {
