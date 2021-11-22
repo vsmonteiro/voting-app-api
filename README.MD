@@ -1,6 +1,6 @@
 # Votting APP
 
-An application to vote on any project of your interest.
+An application to create and vote on any project of your interest.
 
 ## Built with
 
@@ -11,3 +11,4 @@ An application to vote on any project of your interest.
 - Postgres
 - SendGrid (passwordless login)
 - JWT
+- YUP (Validations)
